@@ -36,98 +36,122 @@ if (!$result) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Progress</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            display: flex;
-        }
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        display: flex;
+    }
 
-      
-        .sidebar {
-            width: 250px;
-            background-color: #333;
-            color: white;
-            height: 100vh;
-            padding-top: 20px;
-            position: fixed;
-        }
+    .sidebar {
+        width: 250px;
+        background-color: #2c3e50;
+        color: white;
+        height: 100vh;
+        padding-top: 20px;
+        position: fixed;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 
-        .sidebar a {
-            display: block;
-            color: white;
-            padding: 15px;
-            text-decoration: none;
-            text-align: left;
-        }
+    .sidebar h2 {
+        color: #ecf0f1;
+        font-size: 18px;
+        margin: 20px 0 10px;
+        padding-left: 15px;
+        width: 90%;
+        border-bottom: 1px solid #34495e;
+        text-align: left;
+        box-sizing: border-box;
+    }
 
-        .sidebar a:hover {
-            background:    #9990cc;
-        }
+    .sidebar a {
+        display: flex;
+        align-items: center;
+        color: #bdc3c7;
+        padding: 12px 20px;
+        margin: 5px 0;
+        width: 85%;
+        border-radius: 8px;
+        font-size: 15px;
+        text-decoration: none;
+        transition: background 0.3s, color 0.3s;
+    }
 
-        .sidebar h2 {
-            text-align: center;
-            margin-bottom: 30px;
-        }
+    .sidebar a img {
+        width: 31px;
+        height: 31px;
+        margin-right: 10px;
+    }
 
- 
-        .main-content {
-            margin-left: 260px;
-            padding: 20px;
-            flex-grow: 1;
-        }
+    .sidebar a:hover {
+        background-color: #9990cc;
+        color: #ecf0f1;
+        box-shadow: inset 5px 0 0 #9990cc;
+    }
 
-        .container {
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 850px;
-            margin: 20px auto;
-           
-          
-        }
+    .main-content {
+        margin-left: 260px;
+        padding: 20px;
+        flex-grow: 1;
+    }
 
-        h2 {
-            margin-bottom: 20px;
-        }
+    .container {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 850px;
+        margin: 20px auto;
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
 
-        table, th, td {
-            border: 1px solid #000;
-            padding: 10px;
-            text-align: left;
-        }
+    }
 
-        .progress-bar {
-            width: 100%;
-            background-color: wheat;
-            border-radius: 25px;
-            overflow: hidden;
-            margin-bottom: 20px;
-            border:2px solid black;
-        }
+    h2 {
+        margin-bottom: 20px;
+    }
 
-        .progress-bar-fill {
-            height: 30px;
-            background-color: #4caf50;
-            width: 0;
-            line-height: 30px;
-            text-align: center;
-            color: white;
-            transition: width 0.5s;
-        }
-        
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    table,
+    th,
+    td {
+        border: 1px solid #000;
+        padding: 10px;
+        text-align: left;
+    }
+
+    .progress-bar {
+        width: 100%;
+        background-color: wheat;
+        border-radius: 25px;
+        overflow: hidden;
+        margin-bottom: 20px;
+        border: 2px solid black;
+    }
+
+    .progress-bar-fill {
+        height: 30px;
+        background-color: #4caf50;
+        width: 0;
+        line-height: 30px;
+        text-align: center;
+        color: white;
+        transition: width 0.5s;
+    }
+
     .avatar {
         width: 50px;
         height: 50px;
@@ -138,26 +162,43 @@ if (!$result) {
     }
     </style>
 </head>
+
 <body>
+
 
 
     <!-- Sidebar -->
     <div class="sidebar">
         <h2>Categories</h2>
-        <a href="customer.php">home</a>
-        <a href="?category=clothing">Clothing</a>
-        <a href="?category=bedding">Bedding</a>
-        <a href="?category=miscellaneous">Miscellaneous</a>
-        <a href="response.php">Book Upadate</a>
-        <a href="customer_profile.php">My Profile</a>
-        <a href="logout.php" onclick="return confirm('Are you sure you want to logout?')">Sign Out</a>
+        <a href="customer.php">
+            <img src="icons/home.png" alt="Home Icon"> Home
+        </a>
+        <a href="?category=clothing">
+            <img src="icons/apparel.png" alt="Clothing Icon"> Clothing
+        </a>
+        <a href="?category=bedding">
+            <img src="icons/bed.png" alt="Bedding Icon"> Bedding
+        </a>
+        <a href="?category=miscellaneous">
+            <img src="icons/random.png" alt="Miscellaneous Icon"> Miscellaneous
+        </a>
+        <a href="response.php">
+            <img src="icons/update.png" alt="Book Update Icon"> Book Update
+        </a>
+        <a href="customer_profile.php">
+            <img src="icons/account.png" alt="Profile Icon"> My Profile
+        </a>
+        <a href="logout.php" onclick="return confirm('Are you sure you want to logout?')">
+            <img src="icons/logout.png" alt="Logout Icon"> Sign Out
+        </a>
     </div>
 
-    
+
+
 
 
     <div class="main-content">
-    <a href="customer_profile.php">
+        <a href="customer_profile.php">
             <div>
                 <img src="<?php echo $user['profile_picture'] && file_exists($user['profile_picture']) ? $user['profile_picture'] : 'images/prof.png'; ?>"
                     class="avatar" alt="Avatar">
@@ -168,7 +209,7 @@ if (!$result) {
             <table>
                 <tr>
                     <th>ID</th>
-                    <th>Product Name</th> 
+                    <th>Product Name</th>
                     <th>Book Date</th>
                     <th>reply message</th>
                     <th>finish day</th>
@@ -206,4 +247,5 @@ if (!$result) {
     </div>
 
 </body>
+
 </html>

@@ -59,41 +59,61 @@ if (isset($_POST['update_product'])) {
 
        
         .sidebar {
-            width: 20%;
-            background-color: grey;
-            padding: 30px 20px;
-            color: #fff;
-            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-        }
+    width: 250px;
+    background-color: #2c3e50;
+    color: white;
+    height: 100vh;
+    padding-top: 20px;
+    position: fixed;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-        .sidebar h2 {
-            text-align: center;
-            font-size: 24px;
-            margin-bottom: 40px;
-            border-bottom: 2px solid #f5f6fa;
-            padding-bottom: 15px;
-        }
+.sidebar h2 {
+    color: #ecf0f1;
+    font-size: 18px;
+    margin: 20px 0 10px;
+    padding-left: 15px;
+    width: 90%;  /* Reduced width to prevent overflow */
+    border-bottom: 1px solid #34495e;
+    text-align: left;
+    box-sizing: border-box;  /* Ensures padding is included in width */
+}
 
-        .sidebar a {
-            color: #ecf0f1;
-            text-decoration: none;
-            font-size: 18px;
-            padding: 15px 20px;
-            display: block;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            transition: background-color 0.3s ease;
-        }
+.sidebar a {
+    display: flex;
+    align-items: center;
+    color: #bdc3c7;
+    padding: 12px 20px;
+    margin: 5px 0;
+    width: 85%;  /* Ensures links align with the headings */
+    border-radius: 8px;
+    font-size: 15px;
+    text-decoration: none;
+    transition: background 0.3s, color 0.3s;
+}
 
-        .sidebar a:hover {
-            background-color: #9990cc;
-        }
+.sidebar a img {
+    width: 31px;
+    height: 31px;
+    margin-right: 10px;
+}
+
+.sidebar a:hover {
+    background-color:  #9990cc;
+    color: #ecf0f1;
+    box-shadow: inset 5px 0 0 #9990cc;
+}
 
         .content {
-            width: 80%;
+            width: 50%;
             padding: 30px;
             background-color: #ecf0f1;
             overflow-y: auto;
+            right: 100px;
+            position: fixed;
         }
 
         .content h2 {
@@ -170,12 +190,20 @@ if (isset($_POST['update_product'])) {
 <div class="container">
     <!-- Sidebar -->
     <div class="sidebar">
-        <h2>Admin Dashboard</h2>
-        <a href="admin.php">Manage Products</a>
-        <a href="book_requests_reply.php">Book Requests</a>
-        <a href="#">Settings</a>
-        <a href="logout.php" onclick="return confirm('Are You Sure You Want To Logout?')">Logout</a>
-    </div>
+    <h2>Admin Dashboard</h2>
+    <a href="admin.php">
+        <img src="icons/manage_products.png" alt="Manage Products Icon"> Manage Products
+    </a>
+    <a href="book_requests_reply.php">
+        <img src="icons/requests.png" alt="Book Requests Icon"> Book Requests
+    </a>
+    <a href="#">
+        <img src="icons/settings.png" alt="Settings Icon"> Settings
+    </a>
+    <a href="logout.php" onclick="return confirm('Are You Sure You Want To Logout?')">
+        <img src="icons/logout.png" alt="Logout Icon"> Logout
+    </a>
+</div>
 
     <!-- Main Content -->
     <div class="content">

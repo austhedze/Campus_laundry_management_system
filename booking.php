@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-// Fetch product details for the appointment request (assuming product_id is passed via GET)
+// Fetch product details for thebookings request (assuming product_id is passed via GET)
 if (isset($_GET['product_id'])) {
     $product_id = $_GET['product_id'];
 
@@ -34,101 +34,188 @@ if (isset($_GET['product_id'])) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Request a Book</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            display: flex;
-        }
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 250px;
+        background-color: #2c3e50;
+        color: white;
+        height: 100vh;
+        padding-top: 20px;
+        position: fixed;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: width 0.3s;
+    }
+
+    .sidebar h2 {
+        color: #ecf0f1;
+        font-size: 18px;
+        margin: 20px 0 10px;
+        padding-left: 15px;
+        width: 90%;
+        border-bottom: 1px solid #34495e;
+        text-align: left;
+    }
+
+    .sidebar a {
+        display: flex;
+        align-items: center;
+        color: #bdc3c7;
+        padding: 12px 20px;
+        margin: 5px 0;
+        width: 85%;
+        border-radius: 8px;
+        font-size: 15px;
+        text-decoration: none;
+        transition: background 0.3s, color 0.3s;
+    }
+
+    .sidebar a img {
+        width: 31px;
+        height: 31px;
+        margin-right: 10px;
+    }
+
+    .sidebar a:hover {
+        background-color: #9990cc;
+        color: #ecf0f1;
+        box-shadow: inset 5px 0 0 #9990cc;
+    }
+
+    .content {
+        margin-left: 250px;
+        flex-grow: 1;
+        padding: 20px;
+    }
+
+    .container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 500px;
+        margin: 20px auto;
+    }
+
+    .container h2 {
+        margin-bottom: 20px;
+    }
+
+    input,
+    textarea {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+    }
+
+    button {
+        background-color: #9990cc;
+        color: white;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        width: 100%;
+        border-radius: 4px;
+    }
+
+    button:hover {
+        background-color: grey;
+    }
+
+    .active {
+        background-color: grey;
+    }
+
+    
+    @media (max-width: 768px) {
         .sidebar {
-            width: 250px;
-            background-color: #343a40;
-            color: white;
-            padding: 20px;
-            height: 100vh;
+            width: 100%;
+            height: auto;
+            position: static;
+            box-shadow: none;
+            display: flex;
+            flex-direction: row;
+            overflow-x: auto;
+            justify-content: space-around;
         }
+
         .sidebar h2 {
-            color: #ffffff;
+            display: none;
+           
         }
+
         .sidebar a {
-            color: #ffffff;
-            text-decoration: none;
-            display: block;
-            margin: 10px 0;
-            padding:10px;
-            margin:17px;
-          
+            width: auto;
+            padding: 10px;
+            font-size: 14px;
         }
-        .sidebar a:hover {
-        background-color: #9990cc;;
-        }
+
         .content {
-            flex-grow: 1;
-            padding: 20px;
+            margin-left: 0;
+            padding: 10px;
         }
+
         .container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 500px;
-            margin: 20px auto;
-        }
-        .container h2 {
-            margin-bottom: 20px;
-        }
-        input, textarea {
             width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 4px;
-            border: 1px solid #ccc;
+            margin: 10px auto;
+            padding: 15px;
         }
-        button {
-            background-color: #9990cc;
-            color: white;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            width: 100%;
-            border-radius: 4px;
-        }
-        button:hover {
-            background-color: grey;
-        }
-        .active {
-            background-color:grey;
-        }
-       
+    }
     </style>
 </head>
+
 <body>
 
-<div class="sidebar">
-    <h2>Menu</h2>
-    <a href="customer.php">Home</a>
-    <a href="book_requests.php" class="active">Your Bookings</a>
-    <a href="customer.php">Products</a>
-    <a  href="logout.php" onclick="return confirm('Are You Sure You Want To Logout?')">Logout</a>
-</div>
+    <div class="sidebar">
+        <h2>Menu</h2>
+        <a href="customer.php">
+            <img src="icons/home.png" alt="Home Icon"> Home
+        </a>
+        <div class="spacer" style='height:40px'></div>
+        <a href="booking.php" class="active">
+            <img src="icons/book.png" alt="Bookings Icon"> Book request
+        </a>
+        <div class="spacer" style='height:40px'></div>
+        <a href="customer.php">
+            <img src="icons/product.png" alt="Products Icon"> Products
+        </a>
+        <div class="spacer" style='height:40px'></div>
+        <a href="logout.php" onclick="return confirm('Are You Sure You Want To Logout?')">
+            <img src="icons/logout.png" alt="Logout Icon"> Logout
+        </a>
+    </div>
 
 
-<div class="content">
-    <div class="container">
-        <?php if (isset($product)): ?>
-            <h2>Request a Book for <span style='color:indigo'><?php echo htmlspecialchars($product['name']); ?></span></h2>
-            <p >Price:<span style='color:green'> MWK<?php echo htmlspecialchars($product['price']); ?></p></span>
+
+    <div class="content">
+        <div class="container">
+            <?php if (isset($product)): ?>
+            <h2>Request a Book for <span style='color:indigo'><?php echo htmlspecialchars($product['name']); ?></span>
+            </h2>
+            <p>Price:<span style='color:green'> MWK<?php echo htmlspecialchars($product['price']); ?></p></span>
 
             <form method="POST">
                 <input type="hidden" name="product_id" value="<?php echo htmlspecialchars($product['id']); ?>">
                 <label for="name">Your Name:</label>
                 <input type="text" name="name" required>
-                
+
                 <label for="username">Your Email:</label>
                 <input type="email" name="username" required>
 
@@ -137,12 +224,13 @@ if (isset($_GET['product_id'])) {
 
                 <button type="submit" name="submit">Request a book</button>
             </form>
-        <?php else: ?>
+            <?php else: ?>
             <h2>Product not found!</h2>
             <p>Please select a valid product to request a book.</p>
-        <?php endif; ?>
+            <?php endif; ?>
+        </div>
     </div>
-</div>
 
 </body>
+
 </html>

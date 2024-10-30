@@ -49,7 +49,6 @@ if (isset($_POST['update'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update Profile</title>
     <style>
-       
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -59,71 +58,86 @@ if (isset($_POST['update'])) {
 
         .container {
             display: flex;
-            height: 100vh;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         .sidebar {
-            width: 20%;
-            background:grey;
-            padding: 30px 20px;
-            color: #fff;
+            width: 250px;
+            background-color: #2c3e50;
+            color: white;
+            height: 100vh;
+            padding-top: 20px;
+            position: fixed;
             box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .sidebar h2 {
-            text-align: center;
-            font-size: 24px;
-            margin-bottom: 40px;
-            border-bottom: 2px solid #f5f6fa;
-            padding-bottom: 15px;
+            color: #ecf0f1;
+            font-size: 18px;
+            margin: 20px 0 10px;
+            padding-left: 15px;
+            width: 90%;
+            border-bottom: 1px solid #34495e;
+            text-align: left;
         }
 
         .sidebar a {
-            color: #ecf0f1;
-            text-decoration: none;
-            font-size: 18px;
-            padding: 15px 20px;
-            display: block;
+            display: flex;
+            align-items: center;
+            color: #bdc3c7;
+            padding: 12px 20px;
+            margin: 5px 0;
+            width: 85%;
             border-radius: 8px;
-            margin-bottom: 15px;
-            transition: background-color 0.3s ease;
+            font-size: 15px;
+            text-decoration: none;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .sidebar a img {
+            width: 31px;
+            height: 31px;
+            margin-right: 10px;
         }
 
         .sidebar a:hover {
-            background-color:#9990cc;
+            background-color: #9990cc;
+            color: #ecf0f1;
         }
 
-     
         .content {
-            width: 80%;
-            padding: 30px;
+            margin-left: 270px;
+            padding: 40px;
             background-color: #ecf0f1;
+            flex: 1;
             overflow-y: auto;
         }
 
         .form-section {
-            flex: 1;
             background-color: #fff;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             max-width: 800px;
-            margin: 20px auto;
+            margin: 0 auto;
         }
 
         .avatar-container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-left: 30px;
+            margin-bottom: 20px;
         }
 
         .avatar {
-            width: 200px;
-            height: 200px;
+            width: 240px;
+            height: 240px;
             border-radius: 50%;
             border: 3px solid #4caf50;
-            margin-top: 10px;
         }
 
         input[type="text"], input[type="file"] {
@@ -145,22 +159,33 @@ if (isset($_POST['update'])) {
         }
 
         button:hover {
-            background-color:grey;
+            background-color: grey;
         }
 
+        
         @media (max-width: 768px) {
-            .container {
-                flex-direction: column;
-            }
-
             .sidebar {
                 width: 100%;
                 height: auto;
+                position: relative;
+                box-shadow: none;
                 padding: 20px;
+                margin-bottom: 20px;
+            }
+
+            .sidebar h2, .sidebar a {
+                font-size: 16px;
+                padding: 10px;
             }
 
             .content {
-                width: 100%;
+                margin: 0;
+                padding: 20px;
+            }
+
+            .avatar {
+                width: 200px;
+                height: 200px;
             }
         }
     </style>
@@ -169,14 +194,25 @@ if (isset($_POST['update'])) {
 
 <div class="container">
    
-    <div class="sidebar">
-        <h2>User Dashboard</h2>
-        <a href="customer.php">Home</a>
-        <a href="customer_profile.php">View Profile</a>
-        <a href="book_requests_reply.php">Book Requests</a>
-       
-        <a href="logout.php" onclick="return confirm('Are You Sure You Want To Logout?')">Logout</a>
-    </div>
+<div class="sidebar">
+    <h2>User Dashboard</h2>
+    <a href="customer.php">
+        <img src="icons/home.png" alt="Home Icon"> Home
+    </a>
+    <div style='height:23px'></div>
+    <a href="customer_profile.php">
+        <img src="icons/account.png" alt="Profile Icon"> View Profile
+    </a>
+    <div style='height:23px'></div>
+    <a href="book_requests_reply.php">
+        <img src="icons/book.png" alt="Book Requests Icon"> Book Requests
+    </a>
+    <div style='height:23px'></div>
+    <a href="logout.php" onclick="return confirm('Are You Sure You Want To Logout?')">
+        <img src="icons/logout.png" alt="Logout Icon"> Logout
+    </a>
+</div>
+
 
     
     <div class="content">
