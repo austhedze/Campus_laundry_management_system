@@ -21,7 +21,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-// Fetch product details for thebookings request (assuming product_id is passed via GET)
 if (isset($_GET['product_id'])) {
     $product_id = $_GET['product_id'];
 
@@ -178,6 +177,99 @@ if (isset($_GET['product_id'])) {
             padding: 15px;
         }
     }
+
+    
+    .notification.success {
+            background-color: #9b59b6;
+        }
+
+        .notification.error {
+            background-color: #e74c3c;
+        }
+
+        /* Custom Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            text-align: center;
+        }
+
+        .modal-content button {
+            background-color: #e74c3c;
+            color: white;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .modal-content button.cancel {
+            background-color: #bdc3c7;
+        }
+        
+        .confetti-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .button {
+            background-color: #9990cc;
+            color: white;
+            border: none;
+            padding: 20px 40px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            position: relative;
+            z-index: 1001;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #16a085;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f39c12;
+            opacity: 0;
+            border-radius: 50%;
+            animation: confetti-animation 1s forwards;
+        }
+
+        @keyframes confetti-animation {
+            0% {
+                transform: scale(0.5);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--x), var(--y)) rotate(720deg);
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 
@@ -197,7 +289,7 @@ if (isset($_GET['product_id'])) {
             <img src="icons/product.png" alt="Products Icon"> Products
         </a>
         <div class="spacer" style='height:40px'></div>
-        <a href="logout.php" onclick="return confirm('Are You Sure You Want To Logout?')">
+        <a href="logout.php" id="logoutLink">
             <img src="icons/logout.png" alt="Logout Icon"> Logout
         </a>
     </div>
@@ -222,7 +314,8 @@ if (isset($_GET['product_id'])) {
                 <label for="book_date">Book Date:</label>
                 <input type="date" name="book_date" required>
 
-                <button type="submit" name="submit">Request a book</button>
+                <button type="submit" name="submit" id="confettiButton">Request a book</button>
+                <div class="confetti-container" id="confettiContainer"></div>
             </form>
             <?php else: ?>
             <h2>Product not found!</h2>
@@ -230,6 +323,19 @@ if (isset($_GET['product_id'])) {
             <?php endif; ?>
         </div>
     </div>
+
+
+     <!-- Custom Modal for Logout Confirmation -->
+     <div id="logoutModal" class="modal">
+        <div class="modal-content">
+            <p>Are you sure you want to logout?</p>
+            <button id="confirmLogout">Yes, Logout</button>
+            <button class="cancel" id="cancelLogout">Cancel</button>
+        </div>
+    </div>
+    <script src="scripts/click-splash.js">
+       
+    </script>
 
 </body>
 

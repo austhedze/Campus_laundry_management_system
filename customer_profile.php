@@ -169,6 +169,10 @@ $user = mysqli_fetch_assoc($result);
             <a href="response.php">
                 <img src="icons/update.png" alt="Updates Icon"> Book Updates
             </a>
+            <div class="spacer" style='height:40px'> </div>
+            <a href="bot.php">
+                <img src="icons/enquiries.png" alt="Updates Icon"> Enquiries
+            </a>
             <div class="spacer" style='height:50px'> </div>
             <a href="logout.php" onclick="return confirm('Are You Sure You Want To Logout?')">
                 <img src="icons/logout.png" alt="Logout Icon"> Logout

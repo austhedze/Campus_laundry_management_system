@@ -120,6 +120,7 @@
         <div class="overlay">
             <div class="container">
                 <h1>Laundry Management System</h1>
+                <p>Simplifying Laundry Services for Students</p>
                 <div class="button-group">
                     <button class="button button-login" onclick="location.href='login.php'">Login</button>
                     <button class="button button-signup" onclick="location.href='register.php'">Sign Up</button>

@@ -225,18 +225,23 @@ $result = mysqli_query($conn, $sql);
 
 <div class="sidebar">
     <h2>Admin Dashboard</h2>
+    <div class="spacer" style="height:50px"></div>
+    <a href="admin.php">
+        <img src="icons/dashb.png" alt="Book Requests Icon" style="width:20px; height:20px; margin-right:10px;"> Dashboard
+    </a>
     <a href="#">
         <img src="icons/req.png" alt="req Icon" style="width:20px; height:20px; margin-right:10px;"> Requests
     </a>
-    <div class="spacer" style='height:23px'></div>
+    <div class="spacer" style="height:30px"></div>
+    
     <a href="admin.php">
-        <img src="icons/ive.png" alt="Manage Products Icon" style="width:20px; height:20px; margin-right:10px;"> Manage Products
+        <img src="icons/home.png" alt="Manage Products Icon" style="width:20px; height:20px; margin-right:10px;"> Manage Products
     </a>
-    <div class="spacer" style='height:23px'></div>
+    <div class="spacer" style='height:30px'></div>
     <a href="admin_reply_requests.php">
         <img src="icons/book.png" alt="Book Requests Icon" style="width:20px; height:20px; margin-right:10px;"> Book Requests
     </a>
-    <div class="spacer" style='height:23px'></div>
+    <div class="spacer" style='height:30px'></div>
     <a href="logout.php" onclick="return confirm('Are you sure you want to Logout?')">
         <img src="icons/logout.png" alt="Logout Icon" style="width:20px; height:20px; margin-right:10px;"> Logout
     </a>

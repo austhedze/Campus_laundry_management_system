@@ -147,7 +147,7 @@ if ($_SESSION['role'] !== 'customer') {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    border: 3px solid #4caf50;
+    border:none;
     display: block;
     float: right;
     right: 0;
@@ -196,6 +196,101 @@ if ($_SESSION['role'] !== 'customer') {
     }
 }
 
+
+.notification {
+            position: fixed;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 15px;
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            display: none;
+            z-index: 1000;
+            width: 300px;
+        }
+
+        .notification.success {
+            background-color: #9b59b6;
+        }
+
+        .notification.error {
+            background-color: #e74c3c;
+        }
+
+        /* Custom Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            text-align: center;
+        }
+
+        .modal-content button {
+            background-color: #e74c3c;
+            color: white;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .modal-content button.cancel {
+            background-color: #bdc3c7;
+        }
+ /* Confetti container */
+.confetti-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+    display: none; /* Initially hidden */
+}
+
+/* Confetti style */
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    opacity: 0;
+    border-radius: 50%;
+    animation: confetti-animation 3s forwards;
+}
+
+/* Confetti animation */
+@keyframes confetti-animation {
+    0% {
+        transform: scale(0.5);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--x), var(--y)) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+
+
 </style>
 </head>
 
@@ -223,7 +318,10 @@ if ($_SESSION['role'] !== 'customer') {
     <a href="customer_profile.php">
         <img src="icons/account.png" alt="Profile Icon"> My Profile
     </a>
-    <a href="logout.php" onclick="return confirm('Are you sure you want to logout?')">
+    <a href="bot.php">
+        <img src="icons/enquiries.png" alt="Profile Icon"> Enquiries
+    </a>
+    <a href="logout.php" id="logoutLink">
         <img src="icons/logout.png" alt="Logout Icon"> Sign Out
     </a>
 </div>
@@ -266,8 +364,10 @@ if ($_SESSION['role'] !== 'customer') {
                                 <h2>{$row['name']}</h2>
                                 <p>{$row['description']}</p>
                                 <p><strong>Price: </strong>K{$row['price']}</p>
-                                <button onclick=\"window.location.href='booking.php?product_id={$row['id']}'\">Book Now</button>
-                            </div>
+                              
+                                <button id='confettiButton' onclick=\"window.location.href='booking.php?product_id={$row['id']}'\">Book Now</button>
+                            <div class='confetti-container' id='confettiContainer'></div>
+                                </div>
                           </div>";
                 }
             } else {
@@ -276,6 +376,64 @@ if ($_SESSION['role'] !== 'customer') {
             ?>
         </div>
     </div>
+     <!-- Custom Modal for Logout Confirmation -->
+     <div id="logoutModal" class="modal">
+        <div class="modal-content">
+            <p>Are you sure you want to logout?</p>
+            <button id="confirmLogout">Yes, Logout</button>
+            <button class="cancel" id="cancelLogout">Cancel</button>
+        </div>
+    </div>
+
+    <script>
+        // Function to show notification
+        function showNotification(message, type) {
+            var notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.classList.add(type); // success or error
+            notification.style.display = 'block';
+
+            // Hide after 3 seconds
+            setTimeout(function () {
+                notification.style.display = 'none';
+                notification.classList.remove(type);
+            }, 3000);
+        }
+
+        // Get modal and buttons
+        var logoutModal = document.getElementById('logoutModal');
+        var logoutLink = document.getElementById('logoutLink');
+        var cancelLogout = document.getElementById('cancelLogout');
+        var confirmLogout = document.getElementById('confirmLogout');
+
+        // Show the modal when the logout link is clicked
+        logoutLink.onclick = function (event) {
+            event.preventDefault();  // Prevent the default logout action
+            logoutModal.style.display = 'flex';
+        };
+
+        // Close the modal when 'Cancel' is clicked
+        cancelLogout.onclick = function () {
+            logoutModal.style.display = 'none';
+        };
+
+        // Confirm logout action
+        confirmLogout.onclick = function () {
+            // You can add the actual logout code here
+            window.location.href = "logout.php";  // For example, redirect to the logout page
+        };
+
+        // Close modal if clicked outside of the modal content
+        window.onclick = function (event) {
+            if (event.target == logoutModal) {
+                logoutModal.style.display = 'none';
+            }
+        };
+    </script>
+
+<script src="scripts/splash.js"></script>
+
+
 </body>
 
 </html>

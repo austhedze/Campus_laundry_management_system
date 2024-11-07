@@ -249,6 +249,7 @@ if (isset($_GET['delete'])) {
     <div class="container">
         <div class="sidebar">
             <h2>Admin Dashboard</h2>
+            <div class="spacer" style='height:50px'></div>
             <a href="#">
                 <img src="icons/ive.png" alt="Manage Products Icon"> Manage Products
             </a>
@@ -257,8 +258,8 @@ if (isset($_GET['delete'])) {
                 <img src="icons/not.png" alt="Book Requests Icon"> Book Requests
             </a>
             <div class="spacer" style='height:23px'></div>
-            <a href="#">
-                <img src="icons/enquiries.png" alt="Settings Icon"> Enquiries
+            <a href="assign_role.php">
+                <img src="icons/roles.png" alt="Settings Icon"> Assign Roles
             </a>
             <div class="spacer" style='height:23px'></div>
             <a href="logout.php" onclick="return confirm('Are You Sure You Want To Logout?')">
